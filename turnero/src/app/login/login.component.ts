@@ -10,6 +10,10 @@ export class LoginComponent {
   constructor() { }
 
   login() {
+  	console.log("log in")
+  }
+
+  irARegistro() {
   	
   }
 
