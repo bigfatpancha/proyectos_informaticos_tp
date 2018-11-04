@@ -80,6 +80,7 @@ router.post('/register', function (req, res, next) {
       bcrypt.hash(req.body.password, 10)
       .then(function (hashedPwd) {
         userData = req.body;
+        userData.original_password = userData.password;
         userData.password = hashedPwd;
         callback(null, userData);
       }).catch(function(err) {
@@ -97,7 +98,7 @@ router.post('/register', function (req, res, next) {
         if (err.name == "SequelizeValidationError") {
           callback("validation error");
         } else {
-          callback("internal server error"); 
+          callback("internal server error");
         }
       });
     }

@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
+    original_password: {
+      type: DataTypes.VIRTUAL,
+      validate: {
+        is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
