@@ -15,7 +15,8 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('Users', [{
-      username: 'testUser',
+      name: 'Test',
+      surname: 'User',
       password: bcrypt.hashSync('fakePassword', 10),
       email: 'email@test.com',
       phone: '15-1234-5678',
