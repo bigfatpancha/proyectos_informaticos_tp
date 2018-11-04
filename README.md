@@ -20,3 +20,4 @@ migraciones usando Sequelize-CLI.
 - Crear o modificar el modelo correspondiente.
 - Correr la migración y seeder.
 - La nueva tabla se puede acceder en cualquier endpoint como req.db.NombreDeLaTabla
+
