@@ -6,7 +6,7 @@ Instalar previamente npm, sqlite3. Después correr:
 - cd turnero_api
 - npm install
 - node_modules/.bin/sequelize db:migrate (Actualiza el schema de DB, o la crea si no existe)
-- node_moduled/.bin/sequelize db:seed:all (Genera datos iniciales)
+- node_modules/.bin/sequelize db:seed:all (Genera datos iniciales)
 Estos ultimos dos pasos hay que correrlos cada vez que haya un cambio en la DB.
 
 # Ejecución de la API
