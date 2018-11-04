@@ -1,14 +1,17 @@
 {
   "development": {
     "dialect": "sqlite",
-    "storage": "./turnero.sqlite3"
+    "storage": "./turnero.sqlite3",
+    "seederStorage": "sequelize"
   },
   "test": {
     "dialect": "sqlite",
-    "storage": ":memory"
+    "storage": ":memory",
+    "seederStorage": "sequelize"
   },
   "production": {
     "dialect": "sqlite",
-    "storage": "./turnero.sqlite3"
+    "storage": "./turnero.sqlite3",
+    "seederStorage": "sequelize"
   }
 }

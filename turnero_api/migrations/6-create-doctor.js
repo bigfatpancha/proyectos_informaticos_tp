@@ -22,8 +22,7 @@ module.exports = {
             },
             specialty_id: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
-                references: { model: 'Specialties', key: 'id' }
+                allowNull: false
             },
             enrollment: {
                 type: Sequelize.STRING  

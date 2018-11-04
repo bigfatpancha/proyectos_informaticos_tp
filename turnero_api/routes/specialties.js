@@ -11,4 +11,17 @@ router.get('/', function(req, res, next) {
   	});
 });
 
+router.get('/:id/doctors', function (req, res) {
+	req.db.Doctor.findAll({
+		where: {
+			specialty_id: req.params.id
+		}
+	})
+  	.then(function(doctors) {
+    	res.json(doctors);
+  	}).catch(function(err) {
+    	res.send(err);
+  	});
+})
+
 module.exports = router;

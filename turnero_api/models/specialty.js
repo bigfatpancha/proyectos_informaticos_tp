@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING
     }, {});
     Specialty.associate = function(models) {
-        // associations can be defined here
     };
     return Specialty;
 };
