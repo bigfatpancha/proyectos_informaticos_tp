@@ -6,6 +6,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var specialtiesRouter = require('./routes/specialties');
 
 var db = require('./models');
 
@@ -23,5 +24,8 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/specialties', specialtiesRouter);
+
+console.log("listening on port 3000");
 
 module.exports = app;

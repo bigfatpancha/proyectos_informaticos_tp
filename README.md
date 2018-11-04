@@ -11,6 +11,7 @@ Estos ultimos dos pasos hay que correrlos cada vez que haya un cambio en la DB.
 
 # Ejecución de la API
 - npm start
+- Levanta en http://localhost:3000/
 
 # Cambios en la DB
 La DB es sqlite, se está integrando usando el ORM Sequelize, y los cambios se manejan mediante
