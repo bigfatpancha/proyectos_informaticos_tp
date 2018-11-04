@@ -10,16 +10,16 @@ router.post('/login', function(req, res, next) {
     function(callback) {
       req.db.User.findAll({
         where: {
-          username: req.body.username
+          email: req.body.email
         }
       }).then(function(users) {
         if (users.length == 1) {
           callback(null, users[0])
         } else {
-          callback("user not found");
+          callback("invalid credentials");
         };
       }).catch(function(err) {
-        callback(err);
+        callback("internal server error");
       });      
     }, function(user, callback) {
       bcrypt.compare(req.body.password, user.password)
@@ -29,10 +29,10 @@ router.post('/login', function(req, res, next) {
           delete user.password;
           callback(null, user);
         } else {
-          callback("wrong password");
+          callback("invalid credentials");
         }
       }).catch(function(err) {
-        callback(err);
+        callback("internal server error");
       });
     }
   ], function(err, user) {
