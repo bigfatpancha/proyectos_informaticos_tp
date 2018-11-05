@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING
   }, { });
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasOne(models.Doctor, {foreignKey: 'user_id', as: 'doctorData'});
   };
   return User;
 };
