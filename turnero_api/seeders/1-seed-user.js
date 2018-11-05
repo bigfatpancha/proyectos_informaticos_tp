@@ -20,8 +20,8 @@ module.exports = {
       password: bcrypt.hashSync('fakePassword', 10),
       email: 'email@test.com',
       phone: '15-1234-5678',
-      createdAt: new Date().toDateString(),
-      updatedAt: new Date().toDateString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
         name: 'Gregory',
@@ -29,8 +29,8 @@ module.exports = {
         password: bcrypt.hashSync('1234', 10),
         email: 'ghouse@test.com',
         phone: null,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString()
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     {
         name: 'Rene',
@@ -38,8 +38,8 @@ module.exports = {
         password: bcrypt.hashSync('1234', 10),
         email: 'rfavaloro@test.com',
         phone: null,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString()
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     {
         name: 'Jorge',
@@ -47,8 +47,8 @@ module.exports = {
         password: bcrypt.hashSync('fakePassword', 10),
         email: 'jbatista@test.com',
         phone: null,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString()
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     {
         name: 'Jane',
@@ -56,8 +56,8 @@ module.exports = {
         password: bcrypt.hashSync('fakePassword', 10),
         email: 'jdoe@test.com',
         phone: null,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString()
+        createdAt: new Date(),
+        updatedAt: new Date()
     },
     {
         name: 'Giselle',
@@ -65,8 +65,8 @@ module.exports = {
         password: bcrypt.hashSync('fakePassword', 10),
         email: 'grimolo@test.com',
         phone: null,
-        createdAt: new Date().toDateString(),
-        updatedAt: new Date().toDateString()
+        createdAt: new Date(),
+        updatedAt: new Date()
     }], {});    
   },
 

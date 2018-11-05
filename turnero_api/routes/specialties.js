@@ -24,6 +24,10 @@ router.get('/:id/doctors', function (req, res) {
     {
       model: req.db.Specialty,
       as: "specialty"
+    }, 
+    {
+      model: req.db.WorkingHours,
+      as: "working_hours"
     }],
     attributes: { exclude: ['specialty_id', 'user_id'] }
   })

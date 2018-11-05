@@ -5,28 +5,28 @@ module.exports = {
         return queryInterface.bulkInsert('Specialties', [
         {
             name: 'Clinica',
-            createdAt: new Date().toDateString(),
-            updatedAt: new Date().toDateString()
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
             name: 'Cardiologia',
-            createdAt: new Date().toDateString(),
-            updatedAt: new Date().toDateString()
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
             name: 'Neurologia',
-            createdAt: new Date().toDateString(),
-            updatedAt: new Date().toDateString()
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
             name: 'Traumatologia',
-            createdAt: new Date().toDateString(),
-            updatedAt: new Date().toDateString()
+            createdAt: new Date(),
+            updatedAt: new Date()
         },
         {
             name: 'Dermatologia',
-            createdAt: new Date().toDateString(),
-            updatedAt: new Date().toDateString()
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
         ], {});    
     },
