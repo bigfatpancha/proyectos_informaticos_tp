@@ -36,7 +36,16 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phone: DataTypes.STRING
-  }, { });
+  }, {
+    defaultScope: {
+      attributes: { exclude: ['password'] },
+    },
+    scopes: {
+      withPassword: {
+        attributes: { },
+      }
+    }
+  });
   User.associate = function(models) {
     User.hasOne(models.Doctor, {foreignKey: 'user_id', as: 'doctorData'});
   };

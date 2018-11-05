@@ -6,30 +6,21 @@ router.get('/', function(req, res, next) {
    req.db.Specialty.findAll()
     .then(function(specialties) {
       res.json(specialties);
-    }).catch(function(err) {
+    })
+    .catch(function(err) {
       res.send(err);
     });
 });
 
-router.get('/:id/doctors', function (req, res) {
+router.get('/:specialty_id/doctors', function (req, res) {
   req.db.Doctor.findAll({
     where: {
-      specialty_id: req.params.id
+      specialty_id: req.params.specialty_id
     },
     include: [{
       model: req.db.User,
-      as: 'personal_data',
-      attributes: { exclude: ['password'] }
-    }, 
-    {
-      model: req.db.Specialty,
-      as: "specialty"
-    }, 
-    {
-      model: req.db.WorkingHours,
-      as: "working_hours"
-    }],
-    attributes: { exclude: ['specialty_id', 'user_id'] }
+      as: 'personal_data'
+    }]
   })
   .then(function(doctors) {
     var response = {
@@ -37,13 +28,14 @@ router.get('/:id/doctors', function (req, res) {
       doctors: doctors
     }
     res.json(response);
-  }).catch(function(err) {
+  })
+  .catch(function(err) {
     var response = {
       success: false,
       err: err
     }
     res.json(response);
   });
-})
+});
 
 module.exports = router;

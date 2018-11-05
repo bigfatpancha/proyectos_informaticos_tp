@@ -21,7 +21,7 @@ router.post('/login', function(req, res, next) {
   async.waterfall([
     // Busco si el usuario existe.
     function(callback) {
-      req.db.User.findAll({
+      req.db.User.scope("withPassword").findAll({
         where: {
           email: req.body.email
         }

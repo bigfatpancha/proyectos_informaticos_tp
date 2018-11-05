@@ -7,7 +7,7 @@ module.exports = {
                 primaryKey: true
             },            
             day_of_week: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 primaryKey: true
             },
             from_hour: Sequelize.INTEGER,

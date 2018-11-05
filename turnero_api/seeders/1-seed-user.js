@@ -17,7 +17,7 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [{
       name: 'Test',
       surname: 'User',
-      password: bcrypt.hashSync('fakePassword', 10),
+      password: bcrypt.hashSync('fakePassword1', 10),
       email: 'email@test.com',
       phone: '15-1234-5678',
       createdAt: new Date(),
@@ -26,7 +26,7 @@ module.exports = {
     {
         name: 'Gregory',
         surname: 'House',
-        password: bcrypt.hashSync('1234', 10),
+        password: bcrypt.hashSync('1234abcd', 10),
         email: 'ghouse@test.com',
         phone: null,
         createdAt: new Date(),
@@ -35,7 +35,7 @@ module.exports = {
     {
         name: 'Rene',
         surname: 'Favaloro',
-        password: bcrypt.hashSync('1234', 10),
+        password: bcrypt.hashSync('1234abcd', 10),
         email: 'rfavaloro@test.com',
         phone: null,
         createdAt: new Date(),
@@ -44,7 +44,7 @@ module.exports = {
     {
         name: 'Jorge',
         surname: 'Batista',
-        password: bcrypt.hashSync('fakePassword', 10),
+        password: bcrypt.hashSync('fakePassword1', 10),
         email: 'jbatista@test.com',
         phone: null,
         createdAt: new Date(),
@@ -53,7 +53,7 @@ module.exports = {
     {
         name: 'Jane',
         surname: 'Doe',
-        password: bcrypt.hashSync('fakePassword', 10),
+        password: bcrypt.hashSync('fakePassword1', 10),
         email: 'jdoe@test.com',
         phone: null,
         createdAt: new Date(),
@@ -62,7 +62,7 @@ module.exports = {
     {
         name: 'Giselle',
         surname: 'Rimolo',
-        password: bcrypt.hashSync('fakePassword', 10),
+        password: bcrypt.hashSync('fakePassword1', 10),
         email: 'grimolo@test.com',
         phone: null,
         createdAt: new Date(),

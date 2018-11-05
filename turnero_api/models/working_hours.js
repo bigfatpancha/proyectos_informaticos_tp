@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true
         },
         day_of_week: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             validate: {
-                isIn: [['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']]
+                isIn: [[1, 2, 3, 4, 5]] // Monday ... Friday
             },
             primaryKey: true
         },
