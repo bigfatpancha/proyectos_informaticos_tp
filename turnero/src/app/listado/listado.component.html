@@ -4,16 +4,14 @@
       <table class="table table-striped table-sm">
         <thead>
           <tr>
-            <th>Médico</th>
-            <th>día</th>
-            <th>hora</th>
+            <th>Inicio</th>
+            <th>Fin</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Juan perez</td>
-            <td>7/11/2018</td>
-            <td>18:00</td>
+          <tr *ngFor="let turno of turnos" [routerLink]="['/confirmacion/', turno]" (click)="confirmarTurno(turno)">
+            <td>{{formatDate(turno.start_time)}}</td>
+            <td>{{formatDate(turno.end_time)}}</td>
           </tr>
         </tbody>
       </table>

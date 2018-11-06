@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   buscar() {
   	this.listado.mostrar = true;
+    this._hs.busqueda = this.busqueda;
   }
 
   medChanged(event: any) {
