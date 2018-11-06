@@ -29,6 +29,9 @@ router.get('/:doctor_id', function(req, res) {
       });
     }, 
     function(workingHours, callback) {
+      if (!workingHours) {
+        return callback(null,[]);
+      }
       var appointmentStartTime = requiredDate.clone();
       appointmentStartTime.hours(workingHours.from_hour).minutes(0);
       var workHoursEndTime = requiredDate.clone();
