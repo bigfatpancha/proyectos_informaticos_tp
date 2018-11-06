@@ -1,3 +1,29 @@
-<p>
-  home works!
-</p>
+
+    <div class="container">
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Hola, Lucia</h4>
+        <form class="needs-validation" novalidate="">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="especialidad">Especialidad</label>
+              <select class="custom-select d-block w-100" id="especialidad" required="" (change)="espChanged($event)">
+                <option value="">Seleccioná una especialidad</option>
+                <option *ngFor="let especialidad of especialidades" value="{{especialidad.id}}" [(ngModel)]="busqueda.especialidad" name="especialidad" >{{especialidad.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="medico">Medico</label>
+              <select class="custom-select d-block w-100" id="medico" required="" (change)="medChanged($event)">
+                <option value="">Seleccioná un médico</option>
+                <option *ngFor="let medico of medicos" value="{{medico.personal_data.id}}" [(ngModel)]="busqueda.medico" name="medico" >{{medico.personal_data.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="desde">Fecha</label>
+              <input type="text" class="form-control" id="desde" placeholder="06-11-2018" value="" [(ngModel)]="busqueda.fecha" name="fecha" required="">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block" routerLink="/home/buscar" (click)="buscar()">Buscar turnos</button>
+        </form>
+      </div><br><br>
+    </div>

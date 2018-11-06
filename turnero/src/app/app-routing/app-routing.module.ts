@@ -5,11 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../login/login.component'
 import { RegistroComponent } from '../registro/registro.component'
 import { HomeComponent } from '../home/home.component'
+import { ListadoComponent } from '../listado/listado.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo : '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
+  { path: 'home/buscar', component: ListadoComponent}
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
