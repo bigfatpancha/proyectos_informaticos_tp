@@ -50,5 +50,12 @@ export class HttpService {
       }
     );
   }
+
+  register(fields: object): Observable<object> {
+    return this.http.post(
+      this.url + 'auth/register',
+      fields
+    );
+  }
   
 }

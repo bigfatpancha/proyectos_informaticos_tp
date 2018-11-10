@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../http.service";
+import {SessionService} from "../session.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registro',
@@ -16,17 +19,20 @@ export class RegistroComponent {
     confirmPassword: '',
   };
 
-  public errorMessage = '';
+  public errorMessage:string = '';
+  public registered:boolean = false;
 
-  constructor() { }
+  constructor(
+    private _hs: HttpService,
+    private _router: Router,
+  ) { }
 
   public registrar = () => {
   	this.errorMessage = '';
-  	console.log("fields:",this.fields);
   	if (!this.isValidForm()){
   	  return;
     }
-    this.errorMessage = "formulario valido";
+    this.doRegister();
   };
 
   private isValidForm = ():boolean => {
@@ -38,11 +44,11 @@ export class RegistroComponent {
       this.errorMessage = 'Todos los campos son obligatorios';
       return false;
     }
-    if (this.fields.password != this.fields.confirmPassword){
+    if (this.fields['password'] != this.fields['confirmPassword']){
       this.errorMessage = 'Las contraseñas no coinciden';
       return false;
     }
-    if (!this.isSecurePassword(this.fields.password)){
+    if (!this.isSecurePassword(this.fields['password'])){
       this.errorMessage = 'La contraseña tiene que tener mínimo 8 caracteres, un numero, y una letra';
       return false;
     }
@@ -60,5 +66,20 @@ export class RegistroComponent {
   private hasLetter = (myString: string):boolean =>  {
     return /[A-Za-z]/.test(myString);
   };
+
+  private doRegister = () => {
+    let fieldsData = {... this.fields};
+    delete fieldsData['confirmPassword'];
+
+    this._hs.register(fieldsData).subscribe((result: object) => {
+      if (result['success']){
+        this.registered = true;
+      } else {
+        this.errorMessage = (result['error'] == 'user already exists')
+          ? 'El usuario ya existe'
+          : 'Hubo un error';
+      }
+    });
+  }
 
 }
