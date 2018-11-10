@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from '../http.service'
-import { Medico, Especialidad } from '../model/model'
+import {Medico, Especialidad, PersonalData} from '../model/model'
+import {SessionService} from "../session.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -23,9 +25,19 @@ export class HomeComponent implements OnInit {
     fecha: ""
   };
 
-  constructor(private _hs: HttpService) { }
+  personalData: PersonalData;
+
+  constructor(
+    private _hs: HttpService,
+    private _sessionService: SessionService,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
+    this.personalData = this._sessionService.getPersonalData();
+    if (!this.personalData){
+      this._router.navigateByUrl('/login');
+    }
     this._hs.getEspecialidades().subscribe(especialidades => {
       console.log("especialidades:",especialidades);
       this._hs.especialidades = especialidades;

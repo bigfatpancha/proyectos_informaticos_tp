@@ -40,5 +40,15 @@ export class HttpService {
     }
   	return this.http.get<Turno[]>(url, this.httpOptions);
   }
+
+  login(email: string, password: string): Observable<object> {
+    return this.http.post(
+      this.url + 'auth/login',
+      {
+        email: email,
+        password: password
+      }
+    );
+  }
   
 }

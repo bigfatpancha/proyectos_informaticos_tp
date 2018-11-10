@@ -16,9 +16,9 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit() {
   	this._hs.getTurnos().subscribe((turnos:object) => {
-      console.log("schedule",turnos.schedule);
+      console.log("schedule",turnos['schedule']);
       let turnosDiponibles:Array<Turno> = []
-      for(let turno of turnos.schedule) {
+      for(let turno of turnos['schedule']) {
       	if(turno.available)
       		turnosDiponibles.push(turno)
       }

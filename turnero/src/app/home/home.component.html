@@ -1,7 +1,7 @@
 
     <div class="container">
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Hola, Lucia</h4>
+        <h4 class="mb-3">Hola, {{ personalData ? personalData.name : '' }}</h4>
         <form class="needs-validation" novalidate="">
           <div class="row">
             <div class="col-md-4 mb-3">
