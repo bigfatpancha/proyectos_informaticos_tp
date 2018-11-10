@@ -12,22 +12,22 @@ export class HomeComponent implements OnInit {
 
 	listado: any = {
 		mostrar: false
-	}
+	};
 
-  medicos: Array<Medico> = []
-  especialidades: Array<Especialidad> = []
+  medicos: Array<Medico> = [];
+  especialidades: Array<Especialidad> = [];
   selectedEspecialidad: string;
   busqueda: any = {
     especialidad: "",
     medico: "",
     fecha: ""
-  }
+  };
 
   constructor(private _hs: HttpService) { }
 
   ngOnInit() {
     this._hs.getEspecialidades().subscribe(especialidades => {
-      console.log(especialidades)
+      console.log("especialidades:",especialidades);
       this._hs.especialidades = especialidades;
       this.especialidades = especialidades;
     })
@@ -43,17 +43,17 @@ export class HomeComponent implements OnInit {
   }
 
   espChanged(event: any) {
-    this.busqueda.especialidad = event.target.value 
+    this.busqueda.especialidad = event.target.value;
     this.selectedEspecialidad = event.target.value;
     console.log(this.selectedEspecialidad);
     this.getMedicosByEspecialidad();
   }
 
   getMedicosByEspecialidad() {
-    this._hs.getMedicos(this.selectedEspecialidad).subscribe(medicos => {
-      console.log(medicos);
-      this.medicos = medicos.doctors;
-      this._hs.medicos = medicos.doctors;
+    this._hs.getMedicos(this.selectedEspecialidad).subscribe((medicos: object) => {
+      console.log("medicos:",medicos);
+      this.medicos = medicos['doctors'];
+      this._hs.medicos = medicos['doctors'];
     })
   }
 

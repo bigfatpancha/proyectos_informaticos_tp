@@ -15,7 +15,7 @@
               <label for="medico">Medico</label>
               <select class="custom-select d-block w-100" id="medico" required="" (change)="medChanged($event)">
                 <option value="">Seleccioná un médico</option>
-                <option *ngFor="let medico of medicos" value="{{medico.personal_data.id}}" [(ngModel)]="busqueda.medico" name="medico" >{{medico.personal_data.name}}</option>
+                <option *ngFor="let medico of medicos" value="{{medico.id}}" [(ngModel)]="busqueda.medico" name="medico" >{{medico.personal_data.name}}</option>
               </select>
             </div>
             <div class="col-md-4 mb-3">

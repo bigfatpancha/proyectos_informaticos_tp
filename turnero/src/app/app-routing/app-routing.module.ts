@@ -14,10 +14,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'home/buscar', component: ListadoComponent },
-  { path: 'confirmacion', component: ConfirmacionComponent }
+  { path: 'confirmacion', component: ConfirmacionComponent },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

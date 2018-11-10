@@ -15,8 +15,8 @@ export class ListadoComponent implements OnInit {
   constructor(private _hs: HttpService) { }
 
   ngOnInit() {
-  	this._hs.getTurnos().subscribe(turnos => {
-      console.log(turnos.schedule)
+  	this._hs.getTurnos().subscribe((turnos:object) => {
+      console.log("schedule",turnos.schedule);
       let turnosDiponibles:Array<Turno> = []
       for(let turno of turnos.schedule) {
       	if(turno.available)
