@@ -19,6 +19,8 @@ export class RegistroComponent {
     confirmPassword: '',
   };
 
+  private requiredFields:string[] = ['email', 'name', 'surname', 'password', 'confirmPassword'];
+
   public errorMessage:string = '';
   public registered:boolean = false;
 
@@ -36,7 +38,7 @@ export class RegistroComponent {
   };
 
   private isValidForm = ():boolean => {
-    const anyMissing = Object.keys(this.fields).some( (key) => {
+    const anyMissing = this.requiredFields.some( (key) => {
       const value = this.fields[key];
       return ((value == null) || (value === ''));
     });
