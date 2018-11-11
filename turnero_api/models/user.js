@@ -5,14 +5,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        len: [1, 40]
       }
     },
     surname: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        len: [1, 40]
       }
     },
     password: {
@@ -25,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     original_password: {
       type: DataTypes.VIRTUAL,
       validate: {
-        is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        len: [8, 40]
       }
     },
     email: {
