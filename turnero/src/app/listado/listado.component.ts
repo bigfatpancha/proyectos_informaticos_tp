@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from '../http.service'
 import { Turno } from '../model/model'
+import {SessionService} from "../session.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-listado',
@@ -11,10 +13,19 @@ import { Turno } from '../model/model'
 export class ListadoComponent implements OnInit {
 
 	turnos: Array<Turno> = []
+  medico: Object
+  fecha: String
 
-  constructor(private _hs: HttpService) { }
+  constructor(
+    private _hs: HttpService,
+    private _sessionService: SessionService,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
+    if (!this._sessionService.getPersonalData()){
+      this._router.navigateByUrl('/login');
+    }  
   	this._hs.getTurnos().subscribe((turnos:object) => {
       console.log("schedule",turnos['schedule']);
       let turnosDiponibles:Array<Turno> = []
@@ -24,11 +35,13 @@ export class ListadoComponent implements OnInit {
       }
       this._hs.turnos = turnosDiponibles;
       this.turnos = turnosDiponibles;
+      this.medico = this._hs.medicos.filter(medico => medico.id = this._hs.busqueda.medico)[0];
+      this.fecha = this._hs.busqueda.fecha;
     })
   }
 
   formatDate(date: string) {
-  	return date.substring(0, 10) + " a las " + date.substring(11,16)
+  	return date.substring(11,16)
   }
 
   confirmarTurno(turno: Turno) {
