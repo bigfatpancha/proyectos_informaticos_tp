@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         state: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: 'Activo',
             validate: {
                 isIn: [['Activo', 'Cancelado', 'Finalizado']]
             }
