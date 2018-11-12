@@ -1,18 +1,23 @@
 'use strict';
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('WorkingHours', {
-            doctor_id: {
-                type: Sequelize.INTEGER,
-                primaryKey: true
-            },            
-            day_of_week: {
+        return queryInterface.createTable('Appointments', {
+            user_id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true
             },
-            from_hour: Sequelize.INTEGER,
-            to_hour: Sequelize.INTEGER,
-            appointment_duration: Sequelize.INTEGER,
+            doctor_id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true
+            },
+            date: {
+                type: Sequelize.DATE,
+                primaryKey: true
+            },
+            state: {
+                allowNull: false,
+                type: Sequelize.STRING                
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -24,6 +29,6 @@ module.exports = {
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('WorkingHours');
+        return queryInterface.dropTable('Appointments');
     }
 };
