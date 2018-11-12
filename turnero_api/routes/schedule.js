@@ -29,6 +29,26 @@ router.get('/:doctor_id', function(req, res) {
       });
     }, 
     function(workingHours, callback) {
+      req.db.Appointment.findAll({
+        where: {
+          doctor_id: req.params.doctor_id,
+          date: {
+            [req.db.Sequelize.Op.gt]: requiredDate.clone().startOf('day').toDate(),
+            [req.db.Sequelize.Op.lt]: requiredDate.clone().endOf('day').toDate()
+          },
+          state: 'Activo'
+        },
+        order: [['date', 'ASC']]
+      })
+      .then(function(takenAppointments) {
+        var takenTimes = takenAppointments.map(app => app.date);
+        callback(null, workingHours, takenTimes);
+      })
+      .catch(function(err) {
+        callback('internal server error');
+      });
+    },
+    function(workingHours, takenTimes, callback) {
       if (!workingHours) {
         return callback(null,[]);
       }
@@ -41,10 +61,15 @@ router.get('/:doctor_id', function(req, res) {
       while (appointmentStartTime.isBefore(workHoursEndTime)) {
         var appointmentEndTime = appointmentStartTime.clone();
         appointmentEndTime.add(workingHours.appointment_duration, "minutes");
+        var available = !takenTimes[0] || moment(takenTimes[0]).isAfter(appointmentStartTime);
+        if (!available) {
+          console.log('marking the time ', appointmentStartTime.toDate(), ' as not available.');
+          takenTimes.shift();
+        }
         var appointment = {
           start_time: appointmentStartTime.toDate(),
           end_time: appointmentEndTime.toDate(),
-          available: true
+          available: available
         }
         appointments.push(appointment);
         appointmentStartTime = appointmentEndTime;
