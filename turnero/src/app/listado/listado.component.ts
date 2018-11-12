@@ -30,8 +30,7 @@ export class ListadoComponent implements OnInit {
       console.log("schedule",turnos['schedule']);
       let turnosDiponibles:Array<Turno> = []
       for(let turno of turnos['schedule']) {
-      	if(turno.available)
-      		turnosDiponibles.push(turno)
+      	turnosDiponibles.push(turno)
       }
       this._hs.turnos = turnosDiponibles;
       this.turnos = turnosDiponibles;
