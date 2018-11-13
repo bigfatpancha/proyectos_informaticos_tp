@@ -7,6 +7,7 @@ import { RegistroComponent } from '../registro/registro.component'
 import { HomeComponent } from '../home/home.component'
 import { ListadoComponent } from '../listado/listado.component'
 import { ConfirmacionComponent } from '../confirmacion/confirmacion.component'
+import { HistorialComponent } from '../historial/historial.component'
 
 const routes: Routes = [
   { path: '', redirectTo : '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'home/buscar', component: ListadoComponent },
   { path: 'confirmacion', component: ConfirmacionComponent },
+  { path: 'historial', component: HistorialComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' },

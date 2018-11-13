@@ -31,3 +31,15 @@ export class Turno {
 	end_time: string;
 	available: boolean;
 }
+
+export class AppointentResponse {
+	success: boolean,
+	appointments: Array<Appointment>;
+}
+
+export class Appointment {
+	patient_id: number;
+	doctor_id: number;
+	date: string;
+	state: string;
+}

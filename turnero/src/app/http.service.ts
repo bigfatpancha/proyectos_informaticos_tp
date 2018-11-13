@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Medico, Especialidad, Turno } from './model/model'
+import { Medico, Especialidad, Turno, Appointment, AppointentResponse } from './model/model'
 import {Observable} from "rxjs";
 import {SessionService} from "./session.service";
 
@@ -44,6 +44,10 @@ export class HttpService {
   	return this.http.get<Turno[]>(url, this.httpOptions);
   }
 
+  getHistorial(user_id: number): Observable<AppointentResponse> {
+    return this.http.get<AppointentResponse>(this.url + "appointment/" + user_id, this.httpOptions);
+  }
+
   login(email: string, password: string): Observable<object> {
     return this.http.post(
       this.url + 'auth/login',
@@ -66,9 +70,13 @@ export class HttpService {
     let body = {
       patient_id: this._sessionService.getPersonalData().id,
       doctor_id: this.busqueda.medico.id,
-      date: this.selectedTurno.start_time;
+      date: this.selectedTurno.start_time
     }
     return this.http.post(url, body)
+  }
+
+  modificarTurno(appointment: Appointment): Observable<Object> {
+     return this.http.put(this.url + 'appointment', appointment);
   }
   
 }

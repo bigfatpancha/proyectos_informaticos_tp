@@ -24,6 +24,8 @@
             </div>
           </div>
           <button class="btn btn-primary btn-lg btn-block" (click)="buscar()">Buscar turnos</button>
+          <br>
+          <button class="btn btn-link btn-lg btn-block" routerLink="/historial">Ver historial</button>
         </form><br>
         <div class="alert alert-danger" role="alert" *ngIf=" errorMessage != '' ">
           {{ errorMessage }}

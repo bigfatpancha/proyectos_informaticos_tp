@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ListadoComponent } from './listado/listado.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
     RegistroComponent,
     HomeComponent,
     ListadoComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
