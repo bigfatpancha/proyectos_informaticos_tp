@@ -6,24 +6,27 @@
           <div class="row">
             <div class="col-md-4 mb-3">
               <label for="especialidad">Especialidad</label>
-              <select class="custom-select d-block w-100" id="especialidad" required="" (change)="espChanged($event)">
-                <option value="">Seleccioná una especialidad</option>
-                <option *ngFor="let especialidad of especialidades" value="{{especialidad.id}}" [(ngModel)]="busqueda.especialidad" name="especialidad" >{{especialidad.name}}</option>
+              <select class="custom-select d-block w-100 form-control" id="especialidad" required [(ngModel)]="busqueda.especialidad" name="especialidad" (change)="espChanged($event)">
+                <option>Seleccioná una especialidad</option>
+                <option *ngFor="let especialidad of especialidades" [ngValue]="especialidad" >{{especialidad.name}}</option>
               </select>
             </div>
             <div class="col-md-4 mb-3">
               <label for="medico">Medico</label>
-              <select class="custom-select d-block w-100" id="medico" required="" (change)="medChanged($event)">
-                <option value="">Seleccioná un médico</option>
-                <option *ngFor="let medico of medicos" value="{{medico.id}}" [(ngModel)]="busqueda.medico" name="medico" >{{medico.personal_data.name}}</option>
+              <select class="custom-select d-block w-100 form-control" id="medico" required (change)="medChanged($event)" [(ngModel)]="busqueda.medico" name="medico">
+                <option>Seleccioná un médico</option>
+                <option *ngFor="let medico of medicos" [ngValue]="medico">{{medico.personal_data.name}}</option>
               </select>
             </div>
             <div class="col-md-4 mb-3">
               <label for="desde">Fecha</label>
-              <input type="text" class="form-control" id="desde" placeholder="06-11-2018" value="" [(ngModel)]="busqueda.fecha" name="fecha" required="">
+              <input type="text" class="form-control" id="desde" value="" placeholder="{{fechaPlaceHolder}}" [(ngModel)]="busqueda.fecha" name="fecha" >
             </div>
           </div>
-          <button class="btn btn-primary btn-lg btn-block" routerLink="/home/buscar" (click)="buscar()">Buscar turnos</button>
-        </form>
+          <button class="btn btn-primary btn-lg btn-block" (click)="buscar()">Buscar turnos</button>
+        </form><br>
+        <div class="alert alert-danger" role="alert" *ngIf=" errorMessage != '' ">
+          {{ errorMessage }}
+        </div>
       </div><br><br>
     </div>

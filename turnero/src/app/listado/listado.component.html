@@ -7,13 +7,13 @@
         <thead>
           <tr>
             <th>Hora</th>
-            <th>Disponible</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let turno of turnos" [routerLink]="['/confirmacion/', turno]" (click)="confirmarTurno(turno)">
+          <tr *ngFor="let turno of turnos">
             <td>{{formatDate(turno.start_time)}}</td>
-            <td>{{turno.available ? 'Si' : 'No'}}</td>
+            <td [routerLink]="['/confirmacion/', turno]" (click)="confirmarTurno(turno)">Registrar</td>
           </tr>
         </tbody>
       </table>

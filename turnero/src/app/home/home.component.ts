@@ -12,6 +12,9 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
+  public errorMessage:string = '';
+  private requiredFields:string[] = ['especialidad', 'medico'];
+
 	listado: any = {
 		mostrar: false
 	};
@@ -24,6 +27,7 @@ export class HomeComponent implements OnInit {
     medico: "",
     fecha: ""
   };
+  fechaPlaceHolder = "";
 
   personalData: PersonalData;
 
@@ -43,30 +47,49 @@ export class HomeComponent implements OnInit {
       this._hs.especialidades = especialidades;
       this.especialidades = especialidades;
     })
+    let fecha = new Date();
+    this.fechaPlaceHolder = fecha.getDate() + "-" + parseInt(fecha.getMonth() + 1) + "-" + fecha.getFullYear();
   }
 
   buscar() {
-  	this.listado.mostrar = true;
+    if (!this.isValidForm()){
+      return;
+    }
     this._hs.busqueda = this.busqueda;
+    this._router.navigateByUrl('/home/buscar');
   }
 
   medChanged(event: any) {
-    this.busqueda.medico = event.target.value;
   }
 
   espChanged(event: any) {
-    this.busqueda.especialidad = event.target.value;
-    this.selectedEspecialidad = event.target.value;
-    console.log(this.selectedEspecialidad);
+    this.selectedEspecialidad = this.busqueda.especialidad.id;
     this.getMedicosByEspecialidad();
   }
 
   getMedicosByEspecialidad() {
     this._hs.getMedicos(this.selectedEspecialidad).subscribe((medicos: object) => {
-      console.log("medicos:",medicos);
       this.medicos = medicos['doctors'];
       this._hs.medicos = medicos['doctors'];
     })
+  }
+
+  private isValidForm = ():boolean => {
+    const anyMissing = this.requiredFields.some( (key) => {
+      const value = this.busqueda[key];
+      return ((value == null) || (value === ''));
+    });
+    if (anyMissing){
+      this.errorMessage = 'Todos los campos son obligatorios';
+      return false;
+    }
+    let regex = new RegExp('^[0-9]{2}-[0-9]{2}-[0-9]{4}$')
+    if (this.busqueda['fecha'] != "" && !regex.test(this.busqueda['fecha'])){
+      this.errorMessage = 'La fecha tiene formato invalido (dd-MM-aaaa)';
+      return false;
+    }
+    this.errorMessage = "";
+    return true;
   }
 
 }

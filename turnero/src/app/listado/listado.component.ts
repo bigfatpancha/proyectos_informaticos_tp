@@ -27,15 +27,29 @@ export class ListadoComponent implements OnInit {
       this._router.navigateByUrl('/login');
     }  
   	this._hs.getTurnos().subscribe((turnos:object) => {
-      console.log("schedule",turnos['schedule']);
-      let turnosDiponibles:Array<Turno> = []
-      for(let turno of turnos['schedule']) {
-      	turnosDiponibles.push(turno)
+      if(turnos.success) {
+        if(turnos != null) {
+          console.log("schedule",turnos['schedule']);
+          let turnosDiponibles:Array<Turno> = []
+          for(let turno of turnos['schedule']) {
+            if(turno.available)
+              turnosDiponibles.push(turno)
+          }
+          this._hs.turnos = turnosDiponibles;
+          this.turnos = turnosDiponibles;
+        }
       }
-      this._hs.turnos = turnosDiponibles;
-      this.turnos = turnosDiponibles;
-      this.medico = this._hs.medicos.filter(medico => medico.id = this._hs.busqueda.medico)[0];
+      this.medico = this._hs.medicos.filter(medico => medico.id = this._hs.busqueda.medico.id)[0];
       this.fecha = this._hs.busqueda.fecha;
+
+      this.turnos = [
+        {
+          start_time: "2018-11-13 17:00",
+          end_time: "17:30",
+          available: true
+        }
+
+      ]
     })
   }
 
@@ -45,6 +59,7 @@ export class ListadoComponent implements OnInit {
 
   confirmarTurno(turno: Turno) {
   	console.log('Confirmar turno', turno)
+    this._hs.selectedTurno = turno;
   }
 
 }
