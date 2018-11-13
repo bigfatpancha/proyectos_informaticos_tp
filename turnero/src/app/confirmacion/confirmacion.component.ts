@@ -14,8 +14,11 @@ export class ConfirmacionComponent implements OnInit {
   constructor(private _hs: HttpService) { }
 
   ngOnInit() {
-  	this._hs.confirmarTurno().subscribe(() => {
-  		this.message = "Tu turno fue confirmado";
+  	this._hs.confirmarTurno().subscribe((resp) => {
+      if(resp.success)
+        this.message = "Tu turno fue confirmado";
+      else
+        this.message = "tu turno no fue regustrado"
   	})
   }
 

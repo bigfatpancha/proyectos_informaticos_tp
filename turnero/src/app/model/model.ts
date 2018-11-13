@@ -6,7 +6,7 @@ export class Medico {
 	createdAt: string;
 	updatedAt: string;
 	personal_data: PersonalData;
-	
+
 }
 
 export class PersonalData {
@@ -26,6 +26,11 @@ export class Especialidad {
 	updatedAt: string;
 }
 
+export class TurnoResponse {
+	success: boolean;
+	schedule: Array<Turno>;
+}
+
 export class Turno {
 	start_time: string;
 	end_time: string;
@@ -33,7 +38,7 @@ export class Turno {
 }
 
 export class AppointentResponse {
-	success: boolean,
+	success: boolean;
 	appointments: Array<Appointment>;
 }
 

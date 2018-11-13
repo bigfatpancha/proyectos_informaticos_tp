@@ -4,7 +4,7 @@ var async = require('async');
 var moment = require('moment');
 
 // Returns the list of appointments for a given doctor. If a date is passed
-// by query string in the format 'DD-MM-YYYY', it'll return appointments for 
+// by query string in the format 'DD-MM-YYYY', it'll return appointments for
 // that date. Else, it'll default to returning for the current day.
 router.get('/:doctor_id', function(req, res) {
   var requiredDate = moment();
@@ -27,7 +27,7 @@ router.get('/:doctor_id', function(req, res) {
       .catch(function(err) {
         callback('internal server error');
       });
-    }, 
+    },
     function(workingHours, callback) {
       req.db.Appointment.findAll({
         where: {
@@ -41,7 +41,9 @@ router.get('/:doctor_id', function(req, res) {
         order: [['date', 'ASC']]
       })
       .then(function(takenAppointments) {
+
         var takenTimes = takenAppointments.map(app => app.date);
+        console.log("taken times: ", takenTimes);
         callback(null, workingHours, takenTimes);
       })
       .catch(function(err) {

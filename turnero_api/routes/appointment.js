@@ -27,9 +27,11 @@ router.post('/', function (req, res, next) {
     function(callback) {
       req.db.Appointment.create(req.body)
       .then(function (newAppointment) {
+        console.log('created appointment successfuly');
         callback(null, newAppointment);
       })
       .catch(function (err) {
+        console.log(err.toJSON());
         if (err.name == "SequelizeValidationError") {
           callback("validation error");
         } else if (err.name == "SequelizeUniqueConstraintError") {
@@ -89,7 +91,7 @@ router.put('/:user_id', function(req, res, next) {
         return callback(null);
       }
 
-      // Si el nuevo estado es 'Activo', valido que no haya 
+      // Si el nuevo estado es 'Activo', valido que no haya
       // ningún appointment ya activo que se superponga.
       req.db.Appointment.findOne({
         where: {

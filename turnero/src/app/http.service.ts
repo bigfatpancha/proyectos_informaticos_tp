@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Medico, Especialidad, Turno, Appointment, AppointentResponse } from './model/model'
+import { Medico, Especialidad, Turno, Appointment, AppointentResponse, TurnoResponse } from './model/model'
 import {Observable} from "rxjs";
 import {SessionService} from "./session.service";
 
@@ -12,7 +12,7 @@ export class HttpService {
 
 	url: string = 'http://localhost:3000/';
 	httpOptions = {
-		headers: new HttpHeaders({ 
+		headers: new HttpHeaders({
 			'content-type': 'application/json',
 			'accept': 'application/json',
 			'Access-Control-Allow-Origin': '*'
@@ -27,7 +27,7 @@ export class HttpService {
 
   constructor(private http: HttpClient,
     private _sessionService: SessionService) { }
-  
+
   getMedicos(especialidad: string): Observable<Medico[]> {
   	return this.http.get<Medico[]>(this.url + 'specialties/'+especialidad+'/doctors', this.httpOptions);
   }
@@ -36,12 +36,12 @@ export class HttpService {
   	return this.http.get<Especialidad[]>(this.url + 'specialties', this.httpOptions);
   }
 
-  getTurnos(): Observable<Turno[]> {
+  getTurnos(): Observable<TurnoResponse> {
   	let url = this.url + 'schedule/'+ this.busqueda.medico.id;
   	if(this.busqueda.fecha != ''){
       url = url +'?date=' + this.busqueda.fecha;
     }
-  	return this.http.get<Turno[]>(url, this.httpOptions);
+  	return this.http.get<TurnoResponse>(url, this.httpOptions);
   }
 
   getHistorial(user_id: number): Observable<AppointentResponse> {
@@ -78,5 +78,5 @@ export class HttpService {
   modificarTurno(appointment: Appointment): Observable<Object> {
      return this.http.put(this.url + 'appointment', appointment);
   }
-  
+
 }
