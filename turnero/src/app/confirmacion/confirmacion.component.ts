@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpService } from '../http.service'
+import { HttpService } from '../http.service';
+import { ConfirmationResponse } from '../model/model'
 
 @Component({
   selector: 'app-confirmacion',
@@ -14,7 +15,7 @@ export class ConfirmacionComponent implements OnInit {
   constructor(private _hs: HttpService) { }
 
   ngOnInit() {
-  	this._hs.confirmarTurno().subscribe((resp) => {
+  	this._hs.confirmarTurno().subscribe((resp: ConfirmationResponse) => {
       if(resp.success)
         this.message = "Tu turno fue confirmado";
       else

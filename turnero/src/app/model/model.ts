@@ -48,3 +48,7 @@ export class Appointment {
 	date: string;
 	state: string;
 }
+
+export class ConfirmationResponse {
+	success: boolean;
+}

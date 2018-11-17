@@ -48,7 +48,8 @@ export class HomeComponent implements OnInit {
       this.especialidades = especialidades;
     })
     let fecha = new Date();
-    this.fechaPlaceHolder = fecha.getDate() + "-" + (parseInt(fecha.getMonth()) + 1) + "-" + fecha.getFullYear();
+    let mes = fecha.getMonth() + 1;
+    this.fechaPlaceHolder = fecha.getDate() + "-" + mes.toString() + "-" + fecha.getFullYear();
   }
 
   buscar() {

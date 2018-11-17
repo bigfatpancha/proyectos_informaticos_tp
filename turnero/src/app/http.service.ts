@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Medico, Especialidad, Turno, Appointment, AppointentResponse, TurnoResponse } from './model/model'
+import { ConfirmationResponse, Medico, Especialidad, Turno, Appointment, AppointentResponse, TurnoResponse } from './model/model'
 import {Observable} from "rxjs";
 import {SessionService} from "./session.service";
 
@@ -65,14 +65,14 @@ export class HttpService {
     );
   }
 
-  confirmarTurno(): Observable<object> {
+  confirmarTurno(): Observable<ConfirmationResponse> {
     let url = this.url + 'appointment';
     let body = {
       patient_id: this._sessionService.getPersonalData().id,
       doctor_id: this.busqueda.medico.id,
       date: this.selectedTurno.start_time
     }
-    return this.http.post(url, body)
+    return this.http.post<ConfirmationResponse>(url, body)
   }
 
   modificarTurno(appointment: Appointment): Observable<Object> {
