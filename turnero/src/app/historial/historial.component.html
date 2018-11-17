@@ -13,10 +13,10 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let appointment of appointments">
-						<td>{{appointment.date}}</td>
+						<td>{{formatDate(appointment.date)}}</td>
 						<td>{{appointment.doctor_id}}</td>
 						<td>{{appointment.state}}</td>
-						<td (click)="cancelar(appointment)">Cancelar</td>
+						<td (click)="cancelar(appointment)" class="clickeable">Cancelar</td>
 					</tr>
 				</tbody>
 			</table>

@@ -13,7 +13,7 @@
         <tbody>
           <tr *ngFor="let turno of turnos">
             <td>{{formatDate(turno.start_time)}}</td>
-            <td [routerLink]="['/confirmacion/', turno]" (click)="confirmarTurno(turno)">Registrar</td>
+            <td [routerLink]="['/confirmacion/', turno]" (click)="confirmarTurno(turno)" class="clickeable">Registrar</td>
           </tr>
         </tbody>
       </table>
