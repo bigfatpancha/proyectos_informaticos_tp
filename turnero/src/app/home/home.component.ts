@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
   private isValidForm = ():boolean => {
     const anyMissing = this.requiredFields.some( (key) => {
       const value = this.busqueda[key];
-      return ((value == null) || (value === ''));
+      return ((value == null) || (value === '' ) || (value == 'Seleccioná una especialidad') || (value == 'Seleccioná un médico'));
     });
     if (anyMissing){
       this.errorMessage = 'Todos los campos son obligatorios';
