@@ -76,6 +76,7 @@ export class RegistroComponent {
     this._hs.register(fieldsData).subscribe((result: object) => {
       if (result['success']){
         this.registered = true;
+        this._router.navigateByUrl('/login');
       } else {
         this.errorMessage = (result['error'] == 'user already exists')
           ? 'El usuario ya existe'
