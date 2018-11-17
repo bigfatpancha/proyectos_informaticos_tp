@@ -38,8 +38,6 @@ export class ListadoComponent implements OnInit {
           this._hs.turnos = turnosDiponibles;
           this.turnos = turnosDiponibles;
         }
-      } else {
-        this.turnos = [{start_time: "           18-11"}]
       }
       this.medico = this._hs.medicos.filter(medico => medico.id = this._hs.busqueda.medico.id)[0];
       this.fecha = this._hs.busqueda.fecha;

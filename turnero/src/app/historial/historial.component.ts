@@ -27,8 +27,6 @@ export class HistorialComponent implements OnInit {
 		this._hs.getHistorial(this.personalData.id).subscribe( resp => {
 			if(resp.success) {
 				this.appointments = resp.appointments;
-			} else {
-				this.appointments = [{date: "           18-11", doctor_id: "1", state: "Aceptado"}]
 			}
 		})
 	}
