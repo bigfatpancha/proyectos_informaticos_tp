@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
+  private readonly ADMIN_HOME_URL = '/registro'; //TODO: cambiar a /admin
+  private readonly USER_HOME_URL = '/home';
+
   public credentials = {
     email: '',
     password: ''
@@ -27,10 +30,8 @@ export class LoginComponent {
   login() {
   	this.errorMessage = '';
     this._hs.login(this.credentials.email, this.credentials.password).subscribe((result: object) => {
-      console.log("result:",result);
       if (result['success']){
-        this._sessionService.setPersonalData(result['user']);
-        this._router.navigateByUrl('/home');
+        this.loginSuccess(result['user']);
       } else {
         this.errorMessage = (result['error'] == 'invalid credentials')
           ? 'Credenciales Inválidas'
@@ -39,8 +40,14 @@ export class LoginComponent {
     });
   };
 
-  irARegistro() {
-  	
-  }
+  private loginSuccess = (personalData: object) => {
+    this._sessionService.setPersonalData(personalData);
+    const redirectUrl = (this.isAdmin(personalData)) ? this.ADMIN_HOME_URL : this.USER_HOME_URL;
+    this._router.navigateByUrl(redirectUrl);
+  };
+
+  private isAdmin = (personalData: object): boolean => {
+    return ('role' in personalData) && (personalData['role'] == 'admin');
+  };
 
 }
