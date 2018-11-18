@@ -17,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
         len: [1, 40]
       }
     },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Patient',
+        validate: {
+            isIn: [['Patient', 'Admin', 'Doctor']]
+        }
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

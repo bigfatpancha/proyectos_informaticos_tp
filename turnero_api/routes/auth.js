@@ -82,6 +82,7 @@ router.post('/register', function (req, res, next) {
         userData = req.body;
         userData.original_password = userData.password;
         userData.password = hashedPwd;
+        userData.role = 'Patient';
         callback(null, userData);
       }).catch(function(err) {
         callback("internal server error");
