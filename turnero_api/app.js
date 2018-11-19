@@ -10,6 +10,7 @@ var authRouter = require('./routes/auth');
 var specialtiesRouter = require('./routes/specialties');
 var schedulesRouter = require('./routes/schedule');
 var appointmentsRouter = require('./routes/appointment');
+var doctorsRouter = require('./routes/doctors');
 
 var db = require('./models');
 
@@ -53,6 +54,7 @@ app.use('/auth', authRouter);
 app.use('/specialties', specialtiesRouter);
 app.use('/schedule', schedulesRouter);
 app.use('/appointment', appointmentsRouter);
+app.use('/doctors', doctorsRouter);
 
 console.log("listening on port 3000");
 
