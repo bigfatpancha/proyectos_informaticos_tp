@@ -29,6 +29,20 @@ export class HistorialComponent implements OnInit {
 				this.appointments = resp.appointments;
 			}
 		})
+
+    // TODO: eliminar
+		this._hs.dummy().subscribe(
+		  resp => {
+        console.log("volviiiii");
+      },
+      error => {
+		    console.log("errror:",error);
+		    console.log("status:", error.status);
+		    if (error.status == 403){
+		      this._router.navigateByUrl('/home');
+        }
+      }
+    );
 	}
 
 	cancelar(appointment: Appointment) {
