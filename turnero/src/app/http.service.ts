@@ -76,7 +76,9 @@ export class HttpService {
   }
 
   modificarTurno(appointment: Appointment): Observable<Object> {
-     return this.http.put(this.url + 'appointment', appointment);
+    const userId = this._sessionService.getPersonalData().id;
+    const url = this.url + 'appointment/' + userId;
+    return this.http.put(url, appointment);
   }
 
   addNewDoctor(medico: MedicoRequest): Observable<MedicoResponse> {

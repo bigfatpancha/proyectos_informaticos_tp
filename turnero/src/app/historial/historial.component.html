@@ -17,8 +17,9 @@
 						<td>{{appointment.date | date:'dd/MM/yyyy hh:mm'}}</td>
 						<td>{{appointment.doctor_id}}</td>
 						<td>{{appointment.state}}</td>
-						<td (click)="cancelar(appointment)" class="clickeable">Cancelar</td>
-					</tr>
+						<td *ngIf="appointment.state != 'Cancelado'" (click)="cancelar(appointment)" class="clickeable">Cancelar</td>
+            <td *ngIf="appointment.state == 'Cancelado'"></td>
+          </tr>
 				</tbody>
 			</table>
 		</div>
