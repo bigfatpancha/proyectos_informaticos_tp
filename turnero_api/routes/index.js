@@ -14,9 +14,4 @@ router.get('/', function(req, res, next) {
   	});
 });
 
-// TODO:eliminar
-router.get('/dummy', function(req, res, next) {
-    res.status(403).send();
-});
-
 module.exports = router;

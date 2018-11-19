@@ -9,9 +9,10 @@ import { TituloComponent } from './titulo/titulo.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { ListadoComponent } from './listado/listado.component';
-import { HttpClientModule }    from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HistorialComponent } from './historial/historial.component';
+import {ApiInterceptor} from "./api.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,11 @@ import { HistorialComponent } from './historial/historial.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

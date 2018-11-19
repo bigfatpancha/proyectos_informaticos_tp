@@ -78,9 +78,4 @@ export class HttpService {
   modificarTurno(appointment: Appointment): Observable<Object> {
      return this.http.put(this.url + 'appointment', appointment);
   }
-
-  //TODO: eliminar
-  dummy(): Observable<any> {
-    return this.http.get<any>(this.url + 'dummy', this.httpOptions)
-  }
 }
