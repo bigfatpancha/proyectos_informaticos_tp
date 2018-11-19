@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionService} from "../session.service";
+
+import { PersonalData } from '../model/model'
 
 @Component({
   selector: 'app-titulo',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TituloComponent implements OnInit {
 
-  constructor() { }
+	personalData: PersonalData;
 
-  ngOnInit() {
-  }
+	constructor(private _sessionService: SessionService) { }
+
+	ngOnInit() {
+		this.personalData = this._sessionService.getPersonalData();
+	}
+
+	salir() {
+		this._sessionService.salir()
+	}
 
 }

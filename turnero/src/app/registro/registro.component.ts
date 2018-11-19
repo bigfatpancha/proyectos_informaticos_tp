@@ -16,7 +16,7 @@ export class RegistroComponent {
     surname: '',
     phone: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   };
 
   private requiredFields:string[] = ['email', 'name', 'surname', 'password', 'confirmPassword'];
@@ -34,6 +34,7 @@ export class RegistroComponent {
   	if (!this.isValidForm()){
   	  return;
     }
+    console.log('AAAA')
     this.doRegister();
   };
 
@@ -72,7 +73,7 @@ export class RegistroComponent {
   private doRegister = () => {
     let fieldsData = {... this.fields};
     delete fieldsData['confirmPassword'];
-
+console.log(fieldsData)
     this._hs.register(fieldsData).subscribe((result: object) => {
       if (result['success']){
         this.registered = true;

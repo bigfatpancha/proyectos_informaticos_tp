@@ -31,7 +31,6 @@ router.post('/', function (req, res, next) {
         callback(null, newAppointment);
       })
       .catch(function (err) {
-        console.log(err.toJSON());
         if (err.name == "SequelizeValidationError") {
           callback("validation error");
         } else if (err.name == "SequelizeUniqueConstraintError") {

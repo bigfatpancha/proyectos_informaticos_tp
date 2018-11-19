@@ -1,13 +1,15 @@
 import {PersonalData} from "./model/model";
 import {Injectable} from "@angular/core";
 
+import {Router} from "@angular/router";
+
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
   private personalData: PersonalData;
 
-  constructor() {
+  constructor(private _router: Router) {
   }
 
   public getPersonalData = ():PersonalData => {
@@ -22,6 +24,13 @@ export class SessionService {
     this.personalData = <PersonalData>rawData;
     sessionStorage.setItem('personalData', JSON.stringify(this.personalData));
   };
+
+  salir() {
+    if(this.personalData) {
+      sessionStorage.removeItem('personalData');
+      this._router.navigateByUrl('/login');
+    }
+  }
 
 
 }
