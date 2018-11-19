@@ -20,9 +20,31 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Middleware to add db reference to all requests
 app.use(function(req, res, next) {
   req.db = db;
   next();  
+});
+
+// Middleware to add user data to all requests
+app.use(function(req, res ,next) {
+	var user_id = req.header('User-Id');
+	if (!user_id) return next();
+
+	req.db.User.findOne({
+		where: {
+			id: user_id
+		}
+	})
+	.then(function(user) {
+		req.user = user;
+		next();
+	})
+	.catch(function(err) {
+		console.log('error when fetching user data');
+		res.send('internal server error');
+	});
 });
 
 app.use('/', indexRouter);
