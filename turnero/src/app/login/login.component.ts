@@ -47,7 +47,7 @@ export class LoginComponent {
   };
 
   private isAdmin = (personalData: object): boolean => {
-    return ('role' in personalData) && (personalData['role'] == 'admin');
+    return ('role' in personalData) && (personalData['role'] == 'Admin');
   };
 
 }
