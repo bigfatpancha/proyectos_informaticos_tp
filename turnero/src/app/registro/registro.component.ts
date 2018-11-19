@@ -34,7 +34,6 @@ export class RegistroComponent {
   	if (!this.isValidForm()){
   	  return;
     }
-    console.log('AAAA')
     this.doRegister();
   };
 

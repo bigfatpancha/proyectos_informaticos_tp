@@ -13,6 +13,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HistorialComponent } from './historial/historial.component';
 import {ApiInterceptor} from "./api.interceptor";
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ListadoMedicosComponent } from './listado-medicos/listado-medicos.component';
+import { RegistroMedicoComponent } from './registro-medico/registro-medico.component';
+import { ListadoEspecialidadesComponent } from './listado-especialidades/listado-especialidades.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import {ApiInterceptor} from "./api.interceptor";
     HomeComponent,
     ListadoComponent,
     ConfirmacionComponent,
-    HistorialComponent
+    HistorialComponent,
+    HomeAdminComponent,
+    ListadoMedicosComponent,
+    RegistroMedicoComponent,
+    ListadoEspecialidadesComponent
   ],
   imports: [
     BrowserModule,

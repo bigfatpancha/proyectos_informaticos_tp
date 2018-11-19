@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
-  private readonly ADMIN_HOME_URL = '/registro'; //TODO: cambiar a /admin
+  private readonly ADMIN_HOME_URL = '/admin'; //TODO: cambiar a /admin
   private readonly USER_HOME_URL = '/home';
 
   public credentials = {

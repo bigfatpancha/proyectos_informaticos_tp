@@ -1,0 +1,5 @@
+table>tbody>tr>td.clickeable:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}

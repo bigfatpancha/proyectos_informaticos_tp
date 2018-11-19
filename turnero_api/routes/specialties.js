@@ -1,4 +1,6 @@
 var express = require('express');
+var async = require('async');
+var bcrypt = require('bcrypt');
 var router = express.Router();
 
 /* GET specialties listing. */
