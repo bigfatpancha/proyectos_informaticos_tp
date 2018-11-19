@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
-  private readonly ADMIN_HOME_URL = '/registro'; //TODO: cambiar a /admin
+  private readonly ADMIN_HOME_URL = '/admin'; //TODO: cambiar a /admin
   private readonly USER_HOME_URL = '/home';
 
   public credentials = {
@@ -47,7 +47,7 @@ export class LoginComponent {
   };
 
   private isAdmin = (personalData: object): boolean => {
-    return ('role' in personalData) && (personalData['role'] == 'admin');
+    return ('role' in personalData) && (personalData['role'] == 'Admin');
   };
 
 }

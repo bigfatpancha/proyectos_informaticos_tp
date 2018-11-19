@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { ConfirmationResponse, Medico, Especialidad, Turno, Appointment, AppointentResponse, TurnoResponse } from './model/model'
+import { MedicoResponse, MedicosResponse, MedicoRequest, ConfirmationResponse, Medico, Especialidad, Turno, Appointment, AppointentResponse, TurnoResponse } from './model/model'
 import {Observable} from "rxjs";
 import {SessionService} from "./session.service";
 
@@ -77,6 +77,32 @@ export class HttpService {
 
   modificarTurno(appointment: Appointment): Observable<Object> {
      return this.http.put(this.url + 'appointment', appointment);
+  }
+
+  addNewDoctor(medico: MedicoRequest): Observable<MedicoResponse> {
+    let user_id = this._sessionService.getPersonalData().id;
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'User-Id': user_id.toString()
+      })
+    }
+    return this.http.post<MedicoResponse>(this.url + "doctors", medico, this.httpOptions);
+  }
+
+  getTodosLosMedicos(): Observable<MedicosResponse> {
+    let user_id = this._sessionService.getPersonalData().id;
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'User-Id': user_id.toString()
+      })
+    }
+    return this.http.get<MedicosResponse>(this.url + 'doctors', this.httpOptions);
   }
 
 }

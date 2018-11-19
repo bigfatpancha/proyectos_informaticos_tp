@@ -9,6 +9,36 @@ export class Medico {
 
 }
 
+export class MedicosResponse {
+	success: boolean;
+	doctors: Array<Medico>;
+}
+
+export class MedicoResponse {
+	success: boolean;
+	error: string;
+}
+
+
+export class MedicoRequest {
+	name: string;
+	surname: string;
+	password: string;
+	email: string;
+	phone: string;
+	specialty_id: number;
+
+	constructor(name: string, surname: string, password: string, 
+		email: string, phone: string, specialty_id: number) {
+		this.name = name;
+		this.surname = surname;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+		this.specialty_id = specialty_id;
+	}
+}
+
 export class PersonalData {
 	id: number;
 	name: string;

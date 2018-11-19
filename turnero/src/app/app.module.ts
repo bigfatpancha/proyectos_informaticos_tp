@@ -9,9 +9,14 @@ import { TituloComponent } from './titulo/titulo.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HomeComponent } from './home/home.component';
 import { ListadoComponent } from './listado/listado.component';
-import { HttpClientModule }    from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HistorialComponent } from './historial/historial.component';
+import {ApiInterceptor} from "./api.interceptor";
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ListadoMedicosComponent } from './listado-medicos/listado-medicos.component';
+import { RegistroMedicoComponent } from './registro-medico/registro-medico.component';
+import { ListadoEspecialidadesComponent } from './listado-especialidades/listado-especialidades.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,11 @@ import { HistorialComponent } from './historial/historial.component';
     HomeComponent,
     ListadoComponent,
     ConfirmacionComponent,
-    HistorialComponent
+    HistorialComponent,
+    HomeAdminComponent,
+    ListadoMedicosComponent,
+    RegistroMedicoComponent,
+    ListadoEspecialidadesComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +39,11 @@ import { HistorialComponent } from './historial/historial.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
