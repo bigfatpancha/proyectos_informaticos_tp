@@ -20,7 +20,7 @@ export class ApiInterceptor implements HttpInterceptor {
     private _router: Router,
   ) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status == 403){
