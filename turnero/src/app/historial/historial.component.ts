@@ -38,8 +38,4 @@ export class HistorialComponent implements OnInit {
 		})
 	}
 
-	formatDate(date: string) {
-		return date.substring(11,16)
-	}
-
 }
