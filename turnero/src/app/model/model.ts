@@ -43,7 +43,7 @@ export class AppointentResponse {
 }
 
 export class Appointment {
-	patient_id: number;
+	user_id: number;
 	doctor_id: number;
 	date: string;
 	state: string;

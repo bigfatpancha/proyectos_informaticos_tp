@@ -68,7 +68,7 @@ export class HttpService {
   confirmarTurno(): Observable<ConfirmationResponse> {
     let url = this.url + 'appointment';
     let body = {
-      patient_id: this._sessionService.getPersonalData().id,
+      user_id: this._sessionService.getPersonalData().id,
       doctor_id: this.busqueda.medico.id,
       date: this.selectedTurno.start_time
     }
