@@ -1,0 +1,32 @@
+<app-titulo></app-titulo>
+<div class="container">
+   <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">Listado de medicos</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Mail</th>
+            <th>Telefono</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medico of medicos">
+            <td>{{medico.personal_data.name}}</td>
+            <td>{{medico.personal_data.surname}}</td>
+            <td>{{medico.specialty_id}}</td>
+            <td>{{medico.personal_data.email}}</td>
+            <td>{{medico.personal_data.phone}}</td>
+            <td class="clickeable">Editar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button [disabled]="loading" class="btn btn-primary" routerLink="/admin/medicos/registro">Agregar nuevo</button><br>
+    <button [disabled]="loading" class="btn btn-outline-primary" routerLink="/admin">Volver</button>
+  </div>
+</div>
